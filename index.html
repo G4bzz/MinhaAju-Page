@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Aju</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;600;700;800&family=Josefin+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Oswald:wght@300;400;700&family=Righteous&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16"  href="./assets/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32"  href="./assets/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicons/apple-touch-icon-76x76.png">
+    <link rel="icon" type="image/png" sizes="96x96"  href="./assets/favicons/apple-touch-icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./assets/favicons/android-icon-192x192.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="./assets/struct.css">
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./assets/L.Control.Layers.Tree.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" >
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="./js/leaflet-heat.js"></script>
+    <script src="./js/L.Control.Layers.Tree.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+
+    <script src="./Data/Dataset_ocorrencias.js"></script>
+    <script src="./Data/Dataset_unificado.js"></script>
+</head>
+
+<body>
+    <nav class="nav-bar">
+        <div class="name-site">
+            <a href="#home"><img src="./assets/logo/name.png" width="50%"></a>
+        </div>
+        <i class="fa-solid fa-bars menu-button"></i>
+        <ul class="side-menu" type="none">
+            <i class="fa-solid fa-bars menu-button"></i>
+            <li><a href='#home'>Início</a></li>
+            <li><a href='#how2use'>Como Usar</a></li>
+            <li><a href='#open-app'>Acesse o App</a></li>
+            <li><a href='#'>Galeria</a></li>
+            <li><a href='#'>Dúvidas Frequentes</a></li>
+            <li><a href='#contact'>Contato</a></li>
+        </ul>
+    </nav>
+    <nav class="nav-bar-scroll">
+        <i class="fa-solid fa-bars menu-button"></i>
+        <ul class="side-menu" type="none">
+            <i class="fa-solid fa-bars menu-button"></i>
+            <li><a href='#home'>Início</a></li>
+            <li><a href='#how2use'>Como Usar</a></li>
+            <li><a href='#open-app'>Acesse o App</a></li>
+            <li><a href='#'>Galeria</a></li>
+            <li><a href='#'>Dúvidas Frequentes</a></li>
+            <li><a href='#contact'>Contato</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="bg-site2">
+        <div class="slider-home center">
+            <img src="./assets/logo/name.png">
+            <img src="./assets/logo/name.png">
+            <img src="./assets/logo/name.png">
+            <img src="./assets/logo/name.png">
+            <img src="./assets/logo/name.png">
+        </div>
+    </section>
+    <section id="how2use" class="bg-site h2u">
+        <h1>Como usar o Minha Aju</h1>
+        <div class="h2u-container">
+            <div class="h2u-fig">
+                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
+            </div>
+            <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
+            <div class="h2u-fig">
+                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
+            </div>
+            <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
+            <div class="h2u-fig">
+                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
+            </div>
+            <div class="h2u-legend l1">
+                <h2>Abra o app</h2>
+            </div>
+            <div class="h2u-legend l2" style="grid-column: 3;">
+                <h2>Selecione a opção desejada no menu</h2>
+            </div>
+            <div class="h2u-legend l3" style="grid-column: 5;">
+                <h2>Veja o resultado no mapa!</h2>
+            </div>
+        </div>
+    </section>
+    <section id="open-app" class="bg-site2">
+        <div class="open-box">
+            <img src="./assets/logo/logo.png">
+            <div class="oa-text">
+                <h2>Para acessar o Minha Aju, clique no botão abaixo e seja redirecionado para a aplicação!</h2>
+                <a href="#" class="app-button">Acesse o app</a>
+            </div>
+        </div>
+    </section>
+    <footer id="contact" class="bg-site">
+        <div class="footer-container">
+            <div class="footer-left">
+                <h1><i class="far fa-envelope"></i> teste@ludii.co</h1>
+                <h1><i class="fas fa-map-marker-alt"></i> Ludiico - Departamento de Computação Universidade Federal de Sergipe</h1>
+                <div class="footer-pages">
+                    <ul type="none">
+                        <li><a href='#home'>Início</a></li>
+                        <li><a href='#how2use'>Como Usar</a></li>
+                        <li><a href='#open-app'>Acesse o App</a></li>
+                    </ul>
+                    <ul type="none">
+                        <li><a href='#'>Galeria</a></li>
+                        <li><a href='#'>Dúvidas Frequentes</a></li>
+                        <li><a href='#contact'>Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-right">
+                <img src="./assets/logo/logos.png">
+            </div>
+        </div>
+        <!-- <h2 class="made-by">feito por Gabe</h2> -->
+    </footer>
+    <script src="./js/slick.min.js"></script>
+    <script src="./js/leaflet.awesome-markers.min.js"></script>
+    <script type="text/javascript">
+        $('div.slider-home').slick({
+            dots: true,
+            arrows:false,
+            infinite: true,
+            speed:1000,
+            slidesToShow: 1,
+            autoplay: true,
+            centerMode:true,
+            autoplaySpeed: 3000,
+            pauseOnHover:true
+            
+        });
+
+        $(document).scroll(function() {
+            let scroll = $(document).scrollTop();
+            if (scroll>1) {
+                $('.nav-bar-scroll').fadeIn();
+                $('.nav-bar-scroll').css('display','flex');
+                $('.nav-bar').fadeOut();
+            }
+            else{
+                $('.nav-bar-scroll').fadeOut();
+                $('.nav-bar').fadeIn();
+            }
+        });
+    </script>
+    <script>
+        $('.menu-button').click(function(){
+            $('.side-menu').slideToggle();
+        });
+
+    </script>
+    <!-- <script src="./js/map.js"></script> -->
+</body>
+</html>
