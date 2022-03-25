@@ -6,9 +6,6 @@ font-family: 'Righteous', cursive;
 font-family: 'Ubuntu', sans-serif;
 */
 
-.clear-float{
-    clear: both;
-}
 
 .center{
     margin: 0 auto;
@@ -43,6 +40,13 @@ font-family: 'Ubuntu', sans-serif;
     align-items: center;
     border-bottom: 0.5rem solid #E7A054;
     position: fixed;
+}
+
+.nav-right-container{
+    display: flex;
+    justify-content: end;
+    flex-flow: row nowrap;
+    align-items: center;
 }
 
 .nav-bar-scroll{
@@ -86,8 +90,6 @@ font-family: 'Ubuntu', sans-serif;
     text-decoration: none;
     font-family: 'Dosis', sans-serif;
     font-weight: 700;
-    /* font-family: 'Righteous', cursive;
-    font-weight: 400; */
     font-size: 2rem;
     color: #fff;
     line-height: 5rem;
@@ -149,19 +151,20 @@ li.slick-active button{
 
 /**END SLICK**/
 
-.h2u-container{
-    display: grid;
-    grid-template-columns: 1fr 0.5fr 1fr 0.5fr 1fr;
+ .h2u-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
     text-align: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
+    align-items: center;
+    padding: 2rem;
 }
 
 .h2u h1{
     text-align: center;
     padding: 5rem 0 5rem 0;
     margin: 0;
-    font-size: 4vw;
+    font-size: 3.5vw;
     color: #2b2b2b;
     text-shadow: -0.4rem 0.4rem #FFD132;
 }
@@ -172,10 +175,6 @@ li.slick-active button{
     font-size: 2vw;
 }
 
-.h2u-fig{
-    margin: 0 auto;
-    padding: 2rem;
-}
 
 .h2u-fig img{
     width: 100%;
@@ -187,11 +186,9 @@ li.slick-active button{
 
 i.h2u-arrow{
     font-size: 7vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #FFD132;
     text-shadow: -0.8rem 0 0 #2b2b2b;
+    margin: 0 3rem;
 }
 
 .open-box{
@@ -209,22 +206,13 @@ i.h2u-arrow{
     padding: 0 5rem;
 }
 
-/* .open-box h2{
-    max-width: 40rem;
-    padding: 0 5rem;
-    color: #FF6C33;
-    text-shadow: -0.3rem 0.3rem 0.4rem #2b2b2b;
-    font-size: 2vw;
-} */
-
 .open-box h2 {
     max-width: 40rem;
     padding: 0 5rem;
     font-size: 2vw;
     font-weight: 800;
+    text-shadow: 0.2vw -0.2vw 0 #2e2e2e;
     background: -webkit-linear-gradient(#FF6C33, #FFD132);
-    text-shadow: 0.2rem 0.2rem 0 #2e2e2e;
-    -webkit-background: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -259,9 +247,22 @@ i.h2u-arrow{
     color: #2b2b2b;
 }
 
+.app-button-nav{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 2vw;
+    text-decoration: none;
+    color:#3b3b3b;
+    margin-right: 15rem;
+    transition: all 300ms ease-in-out;
+}
+
+.app-button-nav:hover{
+    text-shadow: -0.2vw 0.2vw 0 #FFD132;
+}
 
 footer.bg-site{
-    height: 28vh;
+    height: auto;
 }
 
 .footer-container{
@@ -274,7 +275,7 @@ footer.bg-site{
 
 .footer-pages{
     display: flex;
-    flex-flow: row;
+    flex-flow: row nowrap;
 }
 
 .footer-left{
@@ -287,8 +288,8 @@ footer.bg-site{
 }
 
 .footer-pages ul{
-    padding: 1rem 2rem 1rem 0;
-    margin: 0;
+    padding: 1rem 1rem 1rem 0;
+    margin: 0 2rem;
 }
 
 .footer-pages li a{
@@ -296,18 +297,25 @@ footer.bg-site{
     font-family: 'Dosis', sans-serif;
     font-weight: 700;
     font-size: 2rem;
-    color: #2b2b2b;
+    color: #3b3b3b;
     transition: all 250ms ease-in-out;
 }
 
 .footer-pages li a:hover{
     color: #1b1b1b;
-    text-shadow: -0.2rem 0.2rem 0.1rem #FFD132;
+    text-shadow: -0.2rem 0.2rem 0.2rem #FFD132;
+    text-decoration: underline;
 }
 
-.footer-right img{
-    box-shadow: inset 0 0 1.5rem #383838;
-    border-radius: 2rem;
+.footer-logos{
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    opacity: 50%;
+    padding: 0 30%;
+}
+
+.footer-logos img{
     width: 100%;
 }
 
@@ -315,6 +323,143 @@ footer.bg-site{
     text-align: center;
     color: #3b3b3b;
     font-weight: 800;
-    font-size: 3vh;
+    font-size: 1vw;
     margin: 0 0 1rem 0;
+    opacity: 80%;
+}
+
+@media screen and (max-width: 414px){
+    .nav-bar{
+        justify-content: end;
+    }
+
+    .h2u h1{
+        font-size: 4vw;
+        text-shadow: -0.5vw 0.5vw #FFD132;
+    }
+
+    div.h2u-legend h2{
+        text-shadow: -0.5vw 0.5vw 0 #FFD132;
+        font-size: 4vw;
+    }
+    
+    .name-site{
+        display: none;
+    }
+
+    i.h2u-arrow{
+        text-shadow: -0.8vw 0 0 #2b2b2b;
+    }
+
+    a.app-button-nav{
+        display: none;
+    }
+    .nav-bar-scroll{
+        height: 6.5rem;
+    }
+
+    .side-menu .menu-button{
+        padding: 0;
+    }
+
+    .app-button{
+        font-size: 6vw;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        box-shadow: 1.8vw -1.8vw 0 #2b2b2b, -1.8vw 1.8vw 0 #FFD132, 0 0 2vw 0.7vw #2b2b2b;
+        text-shadow: 0 0 0.5vw #4b4b4b;
+    }
+    
+    div.open-box h2 {
+        font-size: 5vw;  
+    }
+
+    .footer-container{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logos img{
+        min-width: 30rem;
+        padding: 1rem 0;
+    }
+    
+    .made-by{
+        font-size: 3vw;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .app-button-nav{
+        font-size: 3vw;
+        margin-right: 5vw;
+        width: 15rem;
+    }
+
+    #how2use.bg-site{
+        height: auto;
+    }
+    
+    .h2u-container{
+        display: flex;
+        flex-flow: column wrap;
+        text-align: center;
+        margin: 0 2rem
+    }
+
+    i.h2u-arrow{
+        transform: rotate(90deg);
+        margin: 2rem;
+        transition: all 300ms ease-in-out;
+    }
+
+    .h2u-fig{
+        margin-top: 1rem;
+    }
+
+    .h2u-legend h2{
+        text-shadow: -0.5vw 0.5vw 0 #FFD132;
+        font-size: 3.5vw;
+    }
+
+    .open-box{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+    .open-box img{
+        width: 70%;
+        margin: 1rem 0;
+    }
+    
+    .open-box h2 {
+        padding: 0 5rem;
+        font-size: 4vw;
+    }
+
+    .app-button{
+        font-size: 6vw;
+        margin-top: 1rem;
+        padding: 0.7rem 1rem;
+        box-shadow: 1.5vw -1.5vw 0 #2b2b2b, -1.5vw 1.5vw 0 #FFD132, 0 0 2vw 0.7vw #2b2b2b;
+        text-shadow: 0 0 0.5vw #4b4b4b;
+    }
+
+    .footer-container{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-logos img{
+        min-width: 30rem;
+        padding: 1rem 0;
+    }
+    
+    .made-by{
+        font-size: 3vw;
+    }
 }

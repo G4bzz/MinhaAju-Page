@@ -49,16 +49,19 @@
         <div class="name-site">
             <a href="#home"><img src="./assets/logo/name.png" width="50%"></a>
         </div>
-        <i class="fa-solid fa-bars menu-button"></i>
-        <ul class="side-menu" type="none">
+        <div class="nav-right-container">
+            <a href="#" class="app-button-nav">Acesse o app!</a>
             <i class="fa-solid fa-bars menu-button"></i>
-            <li><a href='#home'>Início</a></li>
-            <li><a href='#how2use'>Como Usar</a></li>
-            <li><a href='#open-app'>Acesse o App</a></li>
-            <li><a href='#'>Galeria</a></li>
-            <li><a href='#'>Dúvidas Frequentes</a></li>
-            <li><a href='#contact'>Contato</a></li>
-        </ul>
+            <ul class="side-menu" type="none">
+                <i class="fa-solid fa-bars menu-button"></i>
+                <li><a href='#home'>Início</a></li>
+                <li><a href='#how2use'>Como Usar</a></li>
+                <li><a href='#open-app'>Acesse o App</a></li>
+                <li><a href='#'>Galeria</a></li>
+                <li><a href='#'>Dúvidas Frequentes</a></li>
+                <li><a href='#contact'>Contato</a></li>
+            </ul>
+        </div>
     </nav>
     <nav class="nav-bar-scroll">
         <i class="fa-solid fa-bars menu-button"></i>
@@ -82,27 +85,27 @@
         </div>
     </section>
     <section id="how2use" class="bg-site h2u">
-        <h1>Como usar o Minha Aju</h1>
+        <h1>Como usar o Minha Aju?<br>É simples, siga os seguintes passos!</h1>
         <div class="h2u-container">
             <div class="h2u-fig">
                 <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
+                <div class="h2u-legend">
+                    <h2>Clique no menu</h2>
+                </div>
             </div>
             <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
             <div class="h2u-fig">
                 <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
+                <div class="h2u-legend">
+                    <h2>Escolha a opção</h2>
+                </div>
             </div>
             <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
             <div class="h2u-fig">
                 <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
-            </div>
-            <div class="h2u-legend l1">
-                <h2>Abra o app</h2>
-            </div>
-            <div class="h2u-legend l2" style="grid-column: 3;">
-                <h2>Selecione a opção desejada no menu</h2>
-            </div>
-            <div class="h2u-legend l3" style="grid-column: 5;">
-                <h2>Veja o resultado no mapa!</h2>
+                <div class="h2u-legend">
+                    <h2>Veja o resultado!</h2>
+                </div>
             </div>
         </div>
     </section>
@@ -120,24 +123,24 @@
             <div class="footer-left">
                 <h1><i class="far fa-envelope"></i> teste@ludii.co</h1>
                 <h1><i class="fas fa-map-marker-alt"></i> Ludiico - Departamento de Computação Universidade Federal de Sergipe</h1>
-                <div class="footer-pages">
-                    <ul type="none">
-                        <li><a href='#home'>Início</a></li>
-                        <li><a href='#how2use'>Como Usar</a></li>
-                        <li><a href='#open-app'>Acesse o App</a></li>
-                    </ul>
-                    <ul type="none">
-                        <li><a href='#'>Galeria</a></li>
-                        <li><a href='#'>Dúvidas Frequentes</a></li>
-                        <li><a href='#contact'>Contato</a></li>
-                    </ul>
-                </div>
             </div>
-            <div class="footer-right">
-                <img src="./assets/logo/logos.png">
+            <div class="footer-pages">
+                <ul type="none">
+                    <li><a href='#home'>Início</a></li>
+                    <li><a href='#how2use'>Como Usar</a></li>
+                    <li><a href='#open-app'>Acesse o App</a></li>
+                </ul>
+                <ul type="none">
+                    <li><a href='#'>Galeria</a></li>
+                    <li><a href='#'>Dúvidas Frequentes</a></li>
+                    <li><a href='#contact'>Contato</a></li>
+                </ul>
             </div>
         </div>
-        <!-- <h2 class="made-by">feito por Gabe</h2> -->
+        <div class="footer-logos">
+            <img src="./assets/logo/logos.png">
+        </div>
+        <h2 class="made-by">Feito por Gabriel Oliveira</h2>
     </footer>
     <script src="./js/slick.min.js"></script>
     <script src="./js/leaflet.awesome-markers.min.js"></script>
@@ -165,6 +168,8 @@
             else{
                 $('.nav-bar-scroll').fadeOut();
                 $('.nav-bar').fadeIn();
+                $('.nav-bar').css('display','flex');
+
             }
         });
     </script>
