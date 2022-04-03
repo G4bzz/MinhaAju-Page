@@ -25,6 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="./assets/struct.css">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/faq-style.css">
     <link rel="stylesheet" href="./assets/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/L.Control.Layers.Tree.css">
@@ -47,18 +48,18 @@
 <body>
     <nav class="nav-bar">
         <div class="name-site">
-            <a href="#home"><img src="./assets/logo/name.png" width="50%"></a>
+            <a href="./index.html#home"><img src="./assets/logo/name.png" width="50%"></a>
         </div>
         <div class="nav-right-container">
             <a href="#" class="app-button-nav">Acesse o app!</a>
             <i class="fa-solid fa-bars menu-button"></i>
             <ul class="side-menu" type="none">
                 <i class="fa-solid fa-bars menu-button"></i>
-                <li><a href='#home'>Início</a></li>
-                <li><a href='#how2use'>Como Usar</a></li>
-                <li><a href='#open-app'>Acesse o App</a></li>
+                <li><a href='./index.html#home'>Início</a></li>
+                <li><a href='./index.html#how2use'>Como Usar</a></li>
+                <li><a href='./index.html#open-app'>Acesse o App</a></li>
                 <li><a href='#'>Galeria</a></li>
-                <li><a href='./faq.html'>Dúvidas Frequentes</a></li>
+                <li><a href='#faq'>Dúvidas Frequentes</a></li>
                 <li><a href='#contact'>Contato</a></li>
             </ul>
         </div>
@@ -67,57 +68,39 @@
         <i class="fa-solid fa-bars menu-button"></i>
         <ul class="side-menu" type="none">
             <i class="fa-solid fa-bars menu-button"></i>
-            <li><a href='#home'>Início</a></li>
-            <li><a href='#how2use'>Como Usar</a></li>
-            <li><a href='#open-app'>Acesse o App</a></li>
+            <li><a href='./index.html#home'>Início</a></li>
+            <li><a href='./index.html#how2use'>Como Usar</a></li>
+            <li><a href='./index.html#open-app'>Acesse o App</a></li>
             <li><a href='#'>Galeria</a></li>
-            <li><a href='./faq.html'>Dúvidas Frequentes</a></li>
+            <li><a href='#faq'>Dúvidas Frequentes</a></li>
             <li><a href='#contact'>Contato</a></li>
         </ul>
     </nav>
-    <section id="home" class="bg-site2">
-        <div class="slider-home center">
-            <img src="./assets/logo/name.png">
-            <img src="./assets/logo/name.png">
-            <img src="./assets/logo/name.png">
-            <img src="./assets/logo/name.png">
-            <img src="./assets/logo/name.png">
+
+	<section id="faq" class="faq bg-faq">
+		<div class="faq-title">
+            <h1>Perguntas frequentes:</h1>
         </div>
-    </section>
-    <section id="how2use" class="bg-site h2u">
-        <h1>Como usar o Minha Aju?<br>É simples, siga os seguintes passos!</h1>
-        <div class="h2u-container">
-            <div class="h2u-fig">
-                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
-                <div class="h2u-legend">
-                    <h2>Clique no menu</h2>
-                </div>
+        <div class="faq-panel">
+            <div class="faq-elem">
+                <h2>O MinhaAju abrange a região da Grande Aracaju?</h2>
+                <p>Não, a aplicação oferece suporte apenas para Aracaju.</p>
             </div>
-            <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
-            <div class="h2u-fig">
-                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
-                <div class="h2u-legend">
-                    <h2>Escolha a opção</h2>
-                </div>
+            <div class="faq-elem">
+                <h2>O MinhaAju mostra informações em tempo real?</h2>
+                <p>Não, os dados exibidos são estáticos, ou seja, não se atualizam automaticamente. No entanto, estamos trabalhando a todo momento na aplicação, logo, ela é atualizada frequentemente.</p>
             </div>
-            <i class="fa-solid fa-arrow-right-long h2u-arrow"></i>
-            <div class="h2u-fig">
-                <img src="https://i.pinimg.com/736x/51/cd/3a/51cd3aea2b0852fd4f5e98ac51eb074b.jpg">
-                <div class="h2u-legend">
-                    <h2>Veja o resultado!</h2>
-                </div>
+            <div class="faq-elem">
+                <h2>O MinhaAju é pago?</h2>
+                <p>Não, o MinhaAju se trata de um serviço gratuito destinado à população aracajuana.</p>
+            </div>
+            <div class="faq-elem">
+                <h2>Posso acessar o MinhaAju pelo meu smartphone ou tablet?</h2>
+                <p>Sim, a aplicação foi adaptada para ser acessada a partir de qualquer dispositivo.</p>
             </div>
         </div>
-    </section>
-    <section id="open-app" class="bg-site2">
-        <div class="open-box">
-            <img src="./assets/logo/logo.png">
-            <div class="oa-text">
-                <h2>Para acessar o Minha Aju, clique no botão abaixo e seja redirecionado para a aplicação!</h2>
-                <a href="#" class="app-button">Acesse o app</a>
-            </div>
-        </div>
-    </section>
+	</section>
+    
     <footer id="contact" class="bg-site">
         <div class="footer-container">
             <div class="footer-left">
@@ -126,13 +109,13 @@
             </div>
             <div class="footer-pages">
                 <ul type="none">
-                    <li><a href='#home'>Início</a></li>
-                    <li><a href='#how2use'>Como Usar</a></li>
-                    <li><a href='#open-app'>Acesse o App</a></li>
+                    <li><a href='./index.html#home'>Início</a></li>
+                    <li><a href='./index.html#how2use'>Como Usar</a></li>
+                    <li><a href='./index.html#open-app'>Acesse o App</a></li>
                 </ul>
                 <ul type="none">
                     <li><a href='#'>Galeria</a></li>
-                    <li><a href='./faq.html'>Dúvidas Frequentes</a></li>
+                    <li><a href='#faq'>Dúvidas Frequentes</a></li>
                     <li><a href='#contact'>Contato</a></li>
                 </ul>
             </div>
