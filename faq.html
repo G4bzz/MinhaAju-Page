@@ -26,23 +26,14 @@
     <link rel="stylesheet" href="./assets/struct.css">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="stylesheet" href="./assets/faq-style.css">
-    <link rel="stylesheet" href="./assets/leaflet.awesome-markers.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./assets/L.Control.Layers.Tree.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" >
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="./js/leaflet-heat.js"></script>
-    <script src="./js/L.Control.Layers.Tree.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous">
     </script>
-
-    <script src="./Data/Dataset_ocorrencias.js"></script>
-    <script src="./Data/Dataset_unificado.js"></script>
 </head>
 
 <body>
@@ -51,7 +42,7 @@
             <a href="./index.html#home"><img src="./assets/logo/name.png" width="50%"></a>
         </div>
         <div class="nav-right-container">
-            <a href="#" class="app-button-nav">Acesse o app!</a>
+            <a href="./minhaAju.html" class="app-button-nav">Acesse o app!</a>
             <i class="fa-solid fa-bars menu-button"></i>
             <ul class="side-menu" type="none">
                 <i class="fa-solid fa-bars menu-button"></i>
@@ -125,8 +116,8 @@
         </div>
         <h2 class="made-by">Feito por Gabriel Oliveira</h2>
     </footer>
+
     <script src="./js/slick.min.js"></script>
-    <script src="./js/leaflet.awesome-markers.min.js"></script>
     <script type="text/javascript">
         $('div.slider-home').slick({
             dots: true,
@@ -155,13 +146,14 @@
 
             }
         });
-    </script>
-    <script>
+
         $('.menu-button').click(function(){
             $('.side-menu').slideToggle();
         });
 
+        $('.side-menu li a').click(function(){
+            $('.side-menu').slideToggle();
+        });
     </script>
-    <!-- <script src="./js/map.js"></script> -->
 </body>
 </html>

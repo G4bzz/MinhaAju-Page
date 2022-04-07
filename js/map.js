@@ -1,9 +1,9 @@
 let baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    attribution: '<a href="https://minhaaju.pages.dev/">MinhaAju</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
 let mapaEscuro = L.tileLayer('https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=6oZOdUci1whayaUdLywS', {
-    attribution: '&copy; <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> © swisstopo <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> <a target="_blank" href="https://www.swisstopo.admin.ch/en/home.html">&copy; swisstopo</a> contributors'
+    attribution: '<a href="https://minhaaju.pages.dev/">MinhaAju</a> | &copy; <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> © swisstopo <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> <a target="_blank" href="https://www.swisstopo.admin.ch/en/home.html">&copy; swisstopo</a> contributors'
 });
 
 
@@ -27,7 +27,7 @@ const comAlimenIcon = L.AwesomeMarkers.icon({
 
 const servicosIcon = L.AwesomeMarkers.icon({
     icon: 'handshake',
-    markerColor: 'darkpurple',
+    markerColor: 'purple',
     prefix: 'fa',
 });
 
@@ -51,7 +51,7 @@ const entretIcon = L.AwesomeMarkers.icon({
 
 const estacIcon = L.AwesomeMarkers.icon({
     icon: 'car-side',
-    markerColor: 'darkgreen',
+    markerColor: 'darkpurple',
     prefix: 'fa',
 });
 
@@ -93,13 +93,13 @@ const financeiroIcon = L.AwesomeMarkers.icon({
 
 const escola = L.AwesomeMarkers.icon({
     icon: 'book-open',
-    markerColor: 'gray',
+    markerColor: 'orange',
     prefix: 'fa'
 });
 
 const religiao = L.AwesomeMarkers.icon({
     icon: 'church',
-    markerColor: 'red',
+    markerColor: 'blue',
     prefix: 'fa'
 });
 
@@ -193,8 +193,8 @@ function addrInfo(a){
     console.log(a)
     if( a == null) document.getElementById('addr-box').style.visibility = 'hidden';
     else{
-        document.getElementById('addr-box').style.visibility = 'visible';
-        document.getElementById('addr-info').innerHTML = 'Nome: ' + a.name + (a.contact ? '<br>Dependência Administrativa: ' + a.dep_admin + '<br>Modalidades: '+ a.modalidades + '<br>Porte (matrículas): '+ a.porte + '<br>Contato: '+ a.contact + '<br><br>': '<br>') + 'Rua: ' + a.address.road + '<br>' + 'Bairro: ' + a.address.suburb + '<br>' + 'CEP: ' + a.address.postcode + '<br>'+ 'Para fechar o box, clique em qualquer local do mapa.';
+        document.getElementById('addr-box').style = "background-color: #e8e8e8; margin: 3.5rem 0; z-index: 1000; position: relative; left: 50%; transform: translateX(-50%); box-shadow: 0 0 1.5rem black; border-radius: 1rem; text-align: center; opacity: 0.92; border: 0.5rem solid #3b3b3b; max-width: 50rem; visibility: visible;"
+        document.getElementById('addr-info').innerHTML = 'Nome: ' + a.name + (a.contact ? '<br>Dependência Administrativa: ' + a.dep_admin + '<br>Modalidades: '+ a.modalidades + '<br>Porte (matrículas): '+ a.porte + '<br>Contato: '+ a.contact + '<br><br>': '<br>') + 'Rua: ' + a.address.road + '<br>' + 'Bairro: ' + a.address.suburb + '<br>' + 'CEP: ' + a.address.postcode + '<br>'+ 'Para resetar o box, clique em qualquer local do mapa.';
     }
 }
 
@@ -506,6 +506,17 @@ info.onAdd = function (map) {
     return this._div;
 };
 
+function formataDado(props){
+    return (props.toFixed(2)).toString().replace('.',',');
+}
+
+let marca = L.control({position: 'bottomright'});
+
+marca.onAdd =function (map) {
+    this._div = L.DomUtil.create('div', 'marca');
+    this._div.innerHTML = '<a href="https://minhaaju.pages.dev/"><img src="./assets/logo/logo.png" alt="Logo do Minha Aju" width="100" style="opacity:80%;"></img></a>'
+    return this._div;
+};
 
 info.update = function (props) {
     this._div.innerHTML = (props ?
@@ -514,13 +525,13 @@ info.update = function (props) {
         '<br>Bairro '+props.name + 
         '</span></h4><span style="font-size: 18px">' +
         '<p><b>Ocorrencias registradas: </b>' + props.indicador +
-        '<br><b>Média anual: </b>' + props.m_anual +
-        '<br><b>Média mensal: </b>' + props.m_mensal + '</p>'+
+        '<br><b>Média anual: </b>' + formataDado(props.m_anual) +
+        '<br><b>Média mensal: </b>' + formataDado(props.m_mensal) + '</p>'+
 
         '<h4><span style="font-size: 20px">Aracaju:</h4></span>' +
         '<p><b>Total de correncias: </b>' + props.aju +
-        '<br><b>Média anual: </b>' + props.aju_m_anual +
-        '<br><b>Média mensal: </b>' + props.aju_m_mensal +
+        '<br><b>Média anual: </b>' + formataDado(props.aju_m_anual) +
+        '<br><b>Média mensal: </b>' + formataDado(props.aju_m_mensal) +
         
         '</p><div class="legend"><i style="background:#ffffcc"></i> <i style="background:#ffeda0"></i> <i style="background:#fed976"></i> <i style="background:#feb24c"></i> <i style="background:#fd8d3c"></i> <i style="background:#fc4e2a"></i> <i style="background:#e31a1c"></i> <i style="background:#bd0026"></i> <i style="background:#800026"></i> </div></div>'
         : ''
@@ -528,6 +539,7 @@ info.update = function (props) {
 };
 
 info.addTo(map);
+marca.addTo(map);
 
 let localizacoes = [
     {
@@ -623,6 +635,7 @@ let localizacoes = [
         ]
     }
 ];
+
 
 
 L.control.layers.tree(mapViews, localizacoes, {

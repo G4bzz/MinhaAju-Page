@@ -373,7 +373,6 @@
                       return
                   }
                   sensible.blur();
-
                   if (L.DomUtil.hasClass(opened, hide)) {
                       // it is not opened, so open it
                       L.DomUtil.addClass(closed, hide);
@@ -412,9 +411,11 @@
               } else { // if option is set to something else
                   labelType = 'span'
               }
+              
           } else {
               labelType = 'span';
           }
+          
           // create the input and label
           var label = creator(labelType, this.cls.label, entry);
           if (tree.layer) {
@@ -431,6 +432,7 @@
               if (this._layerControlInputs) {
                   // to keep compatibility with 1.0.3
                   this._layerControlInputs.push(input);
+
               }
               input.layerId = L.Util.stamp(tree.layer);
               L.DomEvent.on(input, 'click', this._onInputClick, this);
