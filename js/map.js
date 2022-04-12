@@ -190,10 +190,9 @@ function newCriaPontos(dataS, grupo, heats, icone){
 
 
 function addrInfo(a){
-    console.log(a)
-    if( a == null) document.getElementById('addr-box').style.visibility = 'hidden';
+    if( a == null) document.getElementById('addr-box').style.display = 'none';
     else{
-        document.getElementById('addr-box').style = "background-color: #e8e8e8; margin: 3.5rem 0; z-index: 1000; position: relative; left: 50%; transform: translateX(-50%); box-shadow: 0 0 1.5rem black; border-radius: 1rem; text-align: center; opacity: 0.92; border: 0.5rem solid #3b3b3b; max-width: 50rem; visibility: visible;"
+        document.getElementById('addr-box').style = "display: block;"
         document.getElementById('addr-info').innerHTML = 'Nome: ' + a.name + (a.contact ? '<br>Dependência Administrativa: ' + a.dep_admin + '<br>Modalidades: '+ a.modalidades + '<br>Porte (matrículas): '+ a.porte + '<br>Contato: '+ a.contact + '<br><br>': '<br>') + 'Rua: ' + a.address.road + '<br>' + 'Bairro: ' + a.address.suburb + '<br>' + 'CEP: ' + a.address.postcode + '<br>'+ 'Para resetar o box, clique em qualquer local do mapa.';
     }
 }
@@ -496,7 +495,7 @@ function highlightFeature(e) {
     if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
         layer.bringToFront();
     }
-
+    
     info.update(layer.feature.properties);
 }
 
@@ -519,6 +518,7 @@ marca.onAdd =function (map) {
 };
 
 info.update = function (props) {
+    this._div.style.display = (this._div.innerHTML == ''? "block": "none");
     this._div.innerHTML = (props ?
         '<div id="info-box"><h4>Tipo de ocorrência: ' + props.Natureza +
         '<br><span style="font-size: 18px">Entre ' + props.periodo +
