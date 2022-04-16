@@ -102,13 +102,14 @@ font-family: 'Ubuntu', sans-serif;
 
 /****SLICK SLIDER****/
 .slider-home{
-    max-width: 50rem;
+    width: 50vw;
     overflow: hidden;
     margin: 0 auto;
 }
 
 .slider-home img{
     margin: 0 5rem;
+    width: 100%;
 }
 
 .slick-dotted ul{

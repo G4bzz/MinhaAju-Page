@@ -20,6 +20,7 @@ body{
     height: 100vh;
 }
 
+
 #info-box{
     font-weight: 500;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -100,7 +101,7 @@ body{
 @media screen and (max-height: 414px){
     #info-box{
         width: 50vw;
-        height: 70vh;
+        height: 65vh;
         overflow-y: auto;
     }
     
