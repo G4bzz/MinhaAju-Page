@@ -534,7 +534,8 @@ info.update = function (props) {
         '<br><b>Média mensal: </b>' + formataDado(props.aju_m_mensal) +
         
         '</p><div class="legend"><i style="background:#ffffcc"></i> <i style="background:#ffeda0"></i> <i style="background:#fed976"></i> <i style="background:#feb24c"></i> <i style="background:#fd8d3c"></i> <i style="background:#fc4e2a"></i> <i style="background:#e31a1c"></i> <i style="background:#bd0026"></i> <i style="background:#800026"></i> </div></div>'
-        : ''
+        :
+        ''
     );
 };
 

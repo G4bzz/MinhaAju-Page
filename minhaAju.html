@@ -48,14 +48,14 @@
     <section id="mapa" class="map-container">
 		<div id="map">
 			<div id="addr-box"><p id="addr-info"></p></div>
-		</div>
+      <div id="info-box"></div>
     </section>
     <script>
 		$(document).ready(() => {
 			//fecha a box de informações do endereço quando a visualização é trocada
 			$(".leaflet-control-layers-selector").click(function() { 
 				($('#addr-box').css('visibility') == 'visible' ? $('#addr-box').css('visibility', 'hidden'): '')
-				})
+      });
 		})
     </script>
     <script src="./js/map.js"></script>

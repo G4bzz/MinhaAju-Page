@@ -38,7 +38,7 @@ font-family: 'Ubuntu', sans-serif;
     flex-flow: row nowrap;
     justify-content:space-between;
     align-items: center;
-    border-bottom: 0.5rem solid #E7A054;
+    border-bottom: 0.7rem solid #E7A054;
     position: fixed;
 }
 
@@ -50,7 +50,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .nav-bar-scroll{
-    display: flex;
+    display: none;
     align-items: center;
     z-index: 300;
     justify-content: right;
@@ -108,7 +108,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .slider-home img{
-    padding: 0 4rem;
+    margin: 0 5rem;
 }
 
 .slick-dotted ul{

@@ -20,7 +20,6 @@ body{
     height: 100vh;
 }
 
-
 #info-box{
     font-weight: 500;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -112,9 +111,6 @@ body{
     }
 
     .marca{
-       opacity: 75%;
-    }
-    .marca img{
-        width: 85px;
+       display: none;
     }
 }
