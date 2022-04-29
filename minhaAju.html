@@ -42,21 +42,19 @@
 
     <script src="./Data/Dataset_ocorrencias.js"></script>
     <script src="./Data/Dataset_unificado.js"></script>
+    <script src="./js/variaveis_consts.js"></script>
 </head>
 
 <body>
     <section id="mapa" class="map-container">
+        <div class="aviso-map">
+            <h6>Gire a tela do celular!</h6>
+            <i class="fa-solid fa-mobile-screen-button"></i>
+        </div>
 		<div id="map">
+            <div id="info-box"></div>
 			<div id="addr-box"><p id="addr-info"></p></div>
     </section>
-    <script>
-		$(document).ready(() => {
-			//fecha a box de informações do endereço quando a visualização é trocada
-			$(".leaflet-control-layers-selector").click(function() { 
-				($('#addr-box').css('visibility') == 'visible' ? $('#addr-box').css('visibility', 'hidden'): '')
-      });
-		})
-    </script>
     <script src="./js/map.js"></script>
 </body>
 </html>

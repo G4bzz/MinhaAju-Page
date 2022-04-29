@@ -68,10 +68,10 @@
     </nav>
     <section id="home" class="bg-site2">
         <div class="slider-home center">
-            <img src="./assets/slides/1.png">
-            <img src="./assets/slides/2.png">
-            <img src="./assets/slides/3.png">
-            <img src="./assets/slides/4.png">
+            <img class="img-slider" src="./assets/slides/1.png">
+            <img class="img-slider" src="./assets/slides/2.png">
+            <img class="img-slider" src="./assets/slides/3.png">
+            <img class="img-slider" src="./assets/slides/4.png">
         </div>
     </section>
     <section id="how2use" class="bg-site h2u">
@@ -111,7 +111,7 @@
     <footer id="contact" class="bg-site">
         <div class="footer-container">
             <div class="footer-left">
-                <h1><i class="far fa-envelope"></i> teste@ludii.co</h1>
+                <h1><i class="far fa-envelope"></i> gabriel.santos1@dcomp.ufs.br</h1>
                 <h1><i class="fas fa-map-marker-alt"></i> Ludiico - Departamento de Computação Universidade Federal de Sergipe</h1>
             </div>
             <div class="footer-pages">
@@ -135,38 +135,56 @@
 
     <script src="./js/slick.min.js"></script>
     <script type="text/javascript">
-        $('div.slider-home').slick({
-            dots: true,
-            arrows:false,
-            infinite: true,
-            speed:1200,
-            slidesToShow: 1,
-            autoplay: true,
-            centerMode:true,
-            autoplaySpeed: 6000,
-            pauseOnHover:true
-        });
+        ($("body").width() <= 820 ? //Slider mobile;
+            $('div.slider-home').slick({
+                dots: false,
+                arrows:false,
+                infinite: true,
+                speed:1200,
+                slidesToShow: 1,
+                autoplay: true,
+                centerMode:false,
+                autoplaySpeed: 6000,
+                pauseOnHover:true,
+                vertical:true,
+                swipe:false
+            })
+            :
+            $('div.slider-home').slick({ //Slider desktop;
+                dots: true,
+                arrows:false,
+                infinite: true,
+                speed:1200,
+                slidesToShow: 1,
+                autoplay: true,
+                centerMode:true,
+                autoplaySpeed: 6000,
+                pauseOnHover:true
+            })
+        );
+        ($("body").width() <= 414 ? //Navbar mobile
+                $('.nav-bar-scroll').css('display','flex')
+            :
+            $(document).scroll(function() { //Navbar desktop;
+                let scroll = $(document).scrollTop();
+                if (scroll>0) { //Troca de navbar;
+                    $('.nav-bar-scroll').fadeIn();
+                    $('.nav-bar-scroll').css('display','flex');
+                    $('.nav-bar').fadeOut();
+                }
+                else{
+                    $('.nav-bar-scroll').fadeOut();
+                    $('.nav-bar').fadeIn();
+                    $('.nav-bar').css('display','flex');
+    
+                }
+            }))
 
-        $(document).scroll(function() {
-            let scroll = $(document).scrollTop();
-            if (scroll>0) {
-                $('.nav-bar-scroll').fadeIn();
-                $('.nav-bar-scroll').css('display','flex');
-                $('.nav-bar').fadeOut();
-            }
-            else{
-                $('.nav-bar-scroll').fadeOut();
-                $('.nav-bar').fadeIn();
-                $('.nav-bar').css('display','flex');
-
-            }
-        });
-
-        $('.menu-button').click(function(){
+        $('.menu-button').click(function(){ //Animação menu lateral;
             $('.side-menu').slideToggle();
         });
 
-        $('.side-menu li a').click(function(){
+        $('.side-menu li a').click(function(){ //Animação menu lateral;
             $('.side-menu').slideToggle();
         });
     </script>
