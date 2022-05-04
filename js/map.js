@@ -66,12 +66,12 @@ info_update = function (props) {
         '<br><span>Entre ' + props.periodo +
         '<br>Bairro '+props.name + 
         '</span></h4><span>' +
-        '<p><b>Ocorrencias registradas: </b>' + props.indicador +
+        '<p><b>Ocorrências registradas: </b>' + props.indicador +
         '<br><b>Média anual: </b>' + formataDado(props.m_anual) +
         '<br><b>Média mensal: </b>' + formataDado(props.m_mensal) + '</p>'+
 
         '</span><h4>Aracaju:</h4>' +
-        '<p><b>Total de correncias: </b>' + props.aju +
+        '<p><b>Total de ocorrências: </b>' + props.aju +
         '<br><b>Média anual: </b>' + formataDado(props.aju_m_anual) +
         '<br><b>Média mensal: </b>' + formataDado(props.aju_m_mensal) +
         
