@@ -59,27 +59,146 @@ marca.onAdd =function (map) {
 
 
 //Função de atualização da box de informações das ocorrências;
-info_update = function (props) {
-    (props ? $('#info-box').css('display','block') : $('#info-box').css('display','none'));
-    document.getElementById('info-box').innerHTML = (props ?
-        '<h4>Tipo de ocorrência: ' + props.Natureza +
-        '<br><span>Entre ' + props.periodo +
-        '<br>Bairro '+props.name + 
-        '</span></h4><span>' +
-        '<p><b>Ocorrências registradas: </b>' + props.indicador +
-        '<br><b>Média anual: </b>' + formataDado(props.m_anual) +
-        '<br><b>Média mensal: </b>' + formataDado(props.m_mensal) + '</p>'+
+info_update = function (feature) {
+    let props = feature.properties;
 
-        '</span><h4>Aracaju:</h4>' +
-        '<p><b>Total de ocorrências: </b>' + props.aju +
-        '<br><b>Média anual: </b>' + formataDado(props.aju_m_anual) +
-        '<br><b>Média mensal: </b>' + formataDado(props.aju_m_mensal) +
-        
+    (props ? $('#info-box').css('display','block') : $('#info-box').css('display','none'));
+    
+    document.getElementById('info-box').innerHTML = (props ?
+        '<h4>Tipo de ocorrência: ' + feature.natureza +
+        '<br><span>Entre ' + feature.periodo +
+        '</span><h4>'+ feature.bairro +'</h4>' +
+        '</span></h4><span>' +
+        '<p><b>Ocorrências registradas: </b>' + props.length +
+        '<br><b>Equivalente a </b>' + formataDado((props.length/feature.totalAjuPeriodo)*100) + '% <b>do total de ocorrências.</b>' +
+        '<p><b>Total de ocorrências: </b>' + feature.totalAjuPeriodo +
         '</p><div class="legend"><i style="background:#ffffcc"></i> <i style="background:#ffeda0"></i> <i style="background:#fed976"></i> <i style="background:#feb24c"></i> <i style="background:#fd8d3c"></i> <i style="background:#fc4e2a"></i> <i style="background:#e31a1c"></i> <i style="background:#bd0026"></i> <i style="background:#800026"></i></div><div><h4><span>Clique na box para fechá-la.</span></h4></div>'
         :
         ''
     );
 };
+
+function getCountryByCode(data, code) {
+    return data.filter(
+        function(data){ return data.properties.name == code }
+    );
+  }
+
+
+$("#remove").click(function () {
+    resetLayers();
+});
+
+
+function numeroMes(mes) {
+    return mes == "Janeiro" ? 1 :
+    mes == "Fevereiro" ? 2 :
+    mes == "Março" ? 3 :
+    mes == "Abril" ? 4 :
+    mes == "Maio" ? 5 :
+    mes == "Junho" ? 6 :
+    mes == "Julho" ? 7 :
+    mes == "Agosto" ? 8 :
+    mes == "Setembro" ? 9 :
+    mes == "Outubro" ? 10 :
+    mes == "Novembro"? 11 :
+    12;
+}
+
+function colorirMapa(indicador, total) {
+    let escala = (total*0.12)/10;
+    return indicador > escala*9 ? '#800026' :
+    indicador > escala*8 ? '#bd0026' :
+    indicador > escala*7 ? '#e31a1c' :
+    indicador > escala*6 ? '#fc4e2a' :
+    indicador > escala*5 ? '#fd8d3c' :
+    indicador > escala*4 ? '#feb24c' :
+    indicador > escala*3 ? '#fed976' :
+    indicador > escala*2 ? '#ffeda0' :
+    indicador > 0 ? '#ffffcc' :
+    '#ffffff'
+}
+
+
+function estiloVisualizacao(feature) {
+    return {
+        fillColor: colorirMapa(feature.properties.length, feature.totalAjuPeriodo),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7,
+    };
+}
+
+
+function preparaMapa(natureza){
+    let data = dataBairros;
+    let len = 0;
+    for(feature of data.features){
+        feature.properties = dataSet[feature.bairro][natureza].properties;
+        feature.natureza = natureza;
+        len += feature.properties.length;
+    }
+    for(feature of data.features) feature.totalAjuPeriodo = len;
+    return data;
+}
+
+
+function preparaCalor(natureza){
+    let heatmap = [];
+    for(feature of dataBairros.features){
+        dataSet[feature.bairro][natureza].properties.filter(function (ocr) {if(ocr.lat != -999.0) heatmap.push([ocr.lat, ocr.lng, 12])});
+    }
+    return heatmap;
+}
+
+
+function showCalor(nat){
+    layer_heatmap = L.heatLayer(preparaCalor(nat), {radius:15});
+    map.addLayer(layer_heatmap);
+}
+
+function showData(nat){
+    let dados = preparaMapa(nat);
+    let overlay_menuInterativo = L.geoJson(dados, {
+        style: estiloVisualizacao,
+        onEachFeature: function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                click : showOcorrencias,
+                mouseout: function resetHighlight(e) {
+                    overlay_menuInterativo.resetStyle(e.target);
+            
+                }
+            });
+        }
+    }).addTo(layer_menuInterativo);
+    map.addLayer(layer_menuInterativo);
+}
+
+function resetLayers(){
+    layer_menuInterativo.clearLayers();
+    map.removeLayer(layer_heatmap);
+    map.removeLayer(layer_menuInterativo);
+}
+
+$("#exibir-ocs").click(function () {
+    let ocorrencia = $("#list-ocorrencias").val();
+    let nat = $("#list-ocs-natureza option:selected").text();
+    if(ocorrencia == "violencia" && nat != "Vazio"){
+        resetLayers();
+        showData(nat);
+    }
+    else if(ocorrencia == "violenciaCalor" && nat != "Vazio"){
+        resetLayers();
+        showCalor(nat);
+    }
+    else{
+        resetLayers();
+    }
+});
+
 
 
 //Criação do menu de layers;
@@ -110,4 +229,5 @@ setInterval(checkOrientation,1000);
 
 //Fecha os as boxes;
 $("#info-box").on("click", () => $("#info-box").fadeOut());
+
 $("#addr-box").on("click", () => $("#addr-box").fadeOut());

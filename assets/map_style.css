@@ -20,8 +20,25 @@ body{
     height: 100vh;
 }
 
+#control-panel{
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1%;
+    background-color: #ff6d33b1;
+    border-radius: 1rem;
+    width: 95%;
+    padding: 1.5% 0;
+}
+
+
+
 #info-box{
-    display: none;
+    display: block;
     position: absolute;
     z-index: 799;
     left: 1rem;

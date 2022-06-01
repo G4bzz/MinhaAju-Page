@@ -53,6 +53,28 @@
         </div>
 		<div id="map">
             <div id="info-box"></div>
+            <div id="control-panel">
+                <label for="list-ocorrencias">Ocorrencias:</label>
+                <select id="list-ocorrencias" name="list-ocorrencias">
+                    <option value=null>Vazio</option>
+                    <option value="violencia">Violência: mapa interativo</option>
+                    <option value="violenciaCalor">Violência: mapa de calor</option>
+                </select>
+                <label for="list-ocorrencias">Natureza:</label>
+                <select id="list-ocs-natureza" name="list-ocs-natureza">
+                    <option value="null">Vazio</option>
+                    <option value="roubo">Roubo</option>
+                    <option value="furto">Furto</option>
+                    <option value="homDol">Homicídio Doloso</option>
+                    <option value="latrocinio">Latrocínio</option>
+                    <option value="estupro">Estupro</option>
+                    <option value="estVul">Estupro De Vulnerável</option>
+                    <option value="impSex">Importunação Sexual</option>
+                    <option value="assSex">Assédio Sexual</option>
+                </select>
+                <button id="remove">TESTE</button>
+                <input id="exibir-ocs" type="submit" value="exibir no mapa">
+            </div>
 			<div id="addr-box"><p id="addr-info"></p></div>
     </section>
     <script src="./js/map.js"></script>
