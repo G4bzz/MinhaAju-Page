@@ -48,25 +48,25 @@ function formataDado(props){
 }
 
 
-//Criação da marca d'água;
-let marca = L.control({position: 'bottomright'});
-
-marca.onAdd =function (map) {
-    this._div = L.DomUtil.create('div', 'marca');
-    this._div.innerHTML = '<a href="https://minhaaju.pages.dev/"><img src="./assets/logo/logo.png" alt="Logo do Minha Aju" width="100" style="opacity:80%;"></img></a>'
-    return this._div;
-};
-
-
 //Função de atualização da box de informações das ocorrências;
+let flagControl = false;
 info_update = function (feature) {
     let props = feature.properties;
 
-    (props ? $('#info-box').css('display','block') : $('#info-box').css('display','none'));
-    
+    //(props ? $('#info-box').css('display','block') : $('#info-box').css('display','none'));
+    if(props){
+        $('#info-box').css('display','block');
+        $('#control-panel').fadeOut();
+        flagControl = true
+    }
+    else{
+        $('#info-box').css('display','none');
+        $('#control-panel').fadeIn();
+        flagControl = false;
+    }
     document.getElementById('info-box').innerHTML = (props ?
         '<h4>Tipo de ocorrência: ' + feature.natureza +
-        '<br><span>Entre ' + feature.periodo +
+        '<br><span>Entre ' + (feature.natureza == "Homícidio Doloso" ? feature.periodo : (feature.natureza == "Latrocínio" ? feature.periodo : "Janeiro/2019 - Abril/2022")) +
         '</span><h4>'+ feature.bairro +'</h4>' +
         '</span></h4><span>' +
         '<p><b>Ocorrências registradas: </b>' + props.length +
@@ -78,18 +78,16 @@ info_update = function (feature) {
     );
 };
 
+
+//Sem uso
 function getCountryByCode(data, code) {
     return data.filter(
         function(data){ return data.properties.name == code }
     );
-  }
+}
 
 
-$("#remove").click(function () {
-    resetLayers();
-});
-
-
+//Sem uso
 function numeroMes(mes) {
     return mes == "Janeiro" ? 1 :
     mes == "Fevereiro" ? 2 :
@@ -105,6 +103,8 @@ function numeroMes(mes) {
     12;
 }
 
+
+//Função de coloração da layer interativa
 function colorirMapa(indicador, total) {
     let escala = (total*0.12)/10;
     return indicador > escala*9 ? '#800026' :
@@ -120,6 +120,7 @@ function colorirMapa(indicador, total) {
 }
 
 
+//Estilo da layer interativa
 function estiloVisualizacao(feature) {
     return {
         fillColor: colorirMapa(feature.properties.length, feature.totalAjuPeriodo),
@@ -132,6 +133,7 @@ function estiloVisualizacao(feature) {
 }
 
 
+//Prepara os dados da layer de ocorrência
 function preparaMapa(natureza){
     let data = dataBairros;
     let len = 0;
@@ -145,6 +147,7 @@ function preparaMapa(natureza){
 }
 
 
+//Prepara o vetor dos pontos do heatmap
 function preparaCalor(natureza){
     let heatmap = [];
     for(feature of dataBairros.features){
@@ -154,11 +157,14 @@ function preparaCalor(natureza){
 }
 
 
+//Adiciona a layer de heatmap das ocorrências
 function showCalor(nat){
     layer_heatmap = L.heatLayer(preparaCalor(nat), {radius:15});
     map.addLayer(layer_heatmap);
 }
 
+
+//Prepara a layer com os dados escolhidos e adiciona no mapa
 function showData(nat){
     let dados = preparaMapa(nat);
     let overlay_menuInterativo = L.geoJson(dados, {
@@ -177,13 +183,18 @@ function showData(nat){
     map.addLayer(layer_menuInterativo);
 }
 
+
+//Reseta layer do menu de ocorrências
 function resetLayers(){
+    $("#info-box").fadeOut();
     layer_menuInterativo.clearLayers();
     map.removeLayer(layer_heatmap);
     map.removeLayer(layer_menuInterativo);
 }
 
-$("#exibir-ocs").click(function () {
+
+//Exibe a layer desejada
+function exibirLayer() {
     let ocorrencia = $("#list-ocorrencias").val();
     let nat = $("#list-ocs-natureza option:selected").text();
     if(ocorrencia == "violencia" && nat != "Vazio"){
@@ -197,7 +208,20 @@ $("#exibir-ocs").click(function () {
     else{
         resetLayers();
     }
+}
+
+
+//Botão limpa mapa
+$("#remove").click(function () {
+    resetLayers();
+    $("#list-ocorrencias").prop('selectedIndex', 0);
+    $("#list-ocs-natureza").prop('selectedIndex', 0);
 });
+
+
+//Funções onChange das DropBoxes
+$("#list-ocs-natureza").on("change", exibirLayer);
+$("#list-ocorrencias").on("change", exibirLayer);
 
 
 
@@ -209,7 +233,6 @@ let menu_layers = L.control.layers.tree(mapViews, localizacoes, {
 
 
 //Adicionando a marca d'água e o menu de layers ao mapa;
-marca.addTo(map);
 menu_layers.addTo(map);
 
 
@@ -224,10 +247,16 @@ $(".leaflet-control-layers-selector").click(function() {
 //Verifica a orientação do dispositivo móvel;
 let checkOrientation = function(){
     (window.innerHeight > window.innerWidth ? $(".aviso-map").fadeIn() : $(".aviso-map").fadeOut());
+    if(window.innerHeight > window.innerWidth) $("#control-panel").fadeOut();
+    else if(!flagControl) $("#control-panel").fadeIn();
 }
 setInterval(checkOrientation,1000);
 
+
 //Fecha os as boxes;
-$("#info-box").on("click", () => $("#info-box").fadeOut());
+$("#info-box").on("click", () => {
+   $("#info-box").fadeOut();
+   flagControl = !flagControl;
+});
 
 $("#addr-box").on("click", () => $("#addr-box").fadeOut());
