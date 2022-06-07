@@ -1,3 +1,11 @@
+/*
+font-family: 'Dosis', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Oswald', sans-serif;
+font-family: 'Righteous', cursive;
+font-family: 'Ubuntu', sans-serif;
+*/
+
 html{
 	font-size: 62.5%;
 }
@@ -18,6 +26,78 @@ body{
 #map{
     width: 100vw;
     height: 100vh;
+}
+
+#control-panel{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3%;
+    width: 80%;
+    text-align: center;
+    
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: #3b3b3b;
+    opacity: 0.92;
+    background: rgba(255,255,255,0.85);
+    border: 0.5rem solid #3b3b3b;
+    border-radius: 1rem;
+    
+    
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+}
+
+.control-panel-content{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1.5% 0;
+    font-size: 2rem;
+    color: #3b3b3b;
+}
+
+.control-panel-content button{
+    padding: 0.5rem;
+    border: none;
+    background-color: #3b3b3b;
+    border: 0.4rem solid #3b3b3b;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.control-panel-content button:hover{
+    color: #FF6C33;
+    box-shadow: 0 0 0.5rem #4f4f4f;
+}
+
+.control-panel-title{
+    background-color: #3b3b3b;
+    color: #FF6C33;
+    margin: 0;
+    padding: 0;
+    font-size: 2.6rem;
+}
+
+.control-panel-title h4{
+    margin: 0;
+    padding: 0.4rem 0;
+}
+
+#control-panel select{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.6rem;
+    color: #4f4f4f;
+    font-weight: 500;
+    border-radius: 0.4rem;
+    background-color: #dcdcdc;
+    padding: 0.2rem;
 }
 
 #info-box{
@@ -54,10 +134,10 @@ body{
 }
 
 #info-box h4{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Dosis', sans-serif;  
     font-weight: 700;
     color: #FF6C33;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     padding: 0.3rem 1rem;
     background-color: #3b3b3b;
     text-align: center;
@@ -73,7 +153,7 @@ body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     padding: 1rem;
     font-size: 18px;
-    color: #3b3b3b;
+    color: #4b4b4b;
 }
 
 span.close-addr{
@@ -143,6 +223,24 @@ span.addr-destaque{
     color: #3b3b3b;
 }
 
+
+@media screen and (max-width: 900px){
+    .control-panel-title{
+        font-size: 2.5vw;
+    }
+
+    #control-panel select, .control-panel-content button, .control-panel-content{
+        font-size: 1.8vw;
+    }
+    .control-panel-content > *{
+        margin: 0 5px;
+    }
+    
+    #control-panel{
+        bottom: 6%;
+    }
+}
+
 @media screen and (max-width: 414px){
     #info-box{
         overflow-y: auto;
@@ -186,9 +284,5 @@ span.addr-destaque{
         overflow-y: auto;
         top: 10%;
 
-    }
-
-    .marca{
-       display: none;
     }
 }
