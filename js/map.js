@@ -1,11 +1,11 @@
 //Layer padrão do mapa;
-let baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '<a href="https://minhaaju.pages.dev/">MinhaAju</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
 
 //Layer darkmode;
-let mapaEscuro = L.tileLayer('https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=6oZOdUci1whayaUdLywS', {
+const mapaEscuro = L.tileLayer('https://api.maptiler.com/maps/ch-swisstopo-lbm-dark/{z}/{x}/{y}.png?key=6oZOdUci1whayaUdLywS', {
     attribution: '<a href="https://minhaaju.pages.dev/">MinhaAju</a> | <a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a> © swisstopo'
 });
 
@@ -21,7 +21,7 @@ function addrInfo(props){
 
 
 //Instanciamento do Mapa;
-let map = new L.map('map', {
+const map = new L.map('map', {
     center: [-10.9095, -37.0748],
     zoom: 14,
     layers: [baseLayer],
@@ -29,14 +29,14 @@ let map = new L.map('map', {
 
 
 //Layers do mapa;
-let baseMaps = {
+const baseMaps = {
     "Padrão": baseLayer,
     "Dark Mode": mapaEscuro
 };
 
 
 //Modos de visualização;
-let mapViews = {
+const mapViews = {
     label: 'Modo de visualização',
     children: [{label:' Padrão', layer: baseLayer},{label:' Dark mode', layer: mapaEscuro}]
 };
@@ -51,22 +51,32 @@ function formataDado(props){
 //Função de atualização da box de informações das ocorrências;
 let flagControl = false;
 info_update = function (feature) {
-    let props = feature.properties;
+    const props = feature.properties;
 
-    //(props ? $('#info-box').css('display','block') : $('#info-box').css('display','none'));
     if(props){
-        $('#info-box').css('display','block');
+        $('#info-box').fadeIn();
         $('#control-panel').fadeOut();
         flagControl = true
     }
+
     else{
-        $('#info-box').css('display','none');
+        $('#info-box').fadeOut();
         $('#control-panel').fadeIn();
         flagControl = false;
     }
-    document.getElementById('info-box').innerHTML = (props ?
+
+    if (feature.totalAjuPeriodo == 0) document.getElementById('info-box').innerHTML = (props ?
         '<h4>Tipo de ocorrência: ' + feature.natureza +
-        '<br><span>Entre ' + (feature.natureza == "Homícidio Doloso" ? feature.periodo : (feature.natureza == "Latrocínio" ? feature.periodo : "Janeiro/2019 - Abril/2022")) +
+        '<br><span>Entre ' + feature.periodo +
+        '</span><h4>'+ feature.bairro +'</h4>' +
+        '</span></h4><span>' +
+        '<p><b>Não há dados referentes à data fornecida.</b></p><br><div><h4><span>Clique na box para fechá-la.</span></h4></div>'
+        :
+        ''
+    );
+    else document.getElementById('info-box').innerHTML = (props ?
+        '<h4>Tipo de ocorrência: ' + feature.natureza +
+        '<br><span>Entre ' + feature.periodo +
         '</span><h4>'+ feature.bairro +'</h4>' +
         '</span></h4><span>' +
         '<p><b>Ocorrências registradas: </b>' + props.length +
@@ -79,34 +89,17 @@ info_update = function (feature) {
 };
 
 
-//Sem uso
-function getCountryByCode(data, code) {
-    return data.filter(
-        function(data){ return data.properties.name == code }
-    );
-}
-
-
-//Sem uso
-function numeroMes(mes) {
-    return mes == "Janeiro" ? 1 :
-    mes == "Fevereiro" ? 2 :
-    mes == "Março" ? 3 :
-    mes == "Abril" ? 4 :
-    mes == "Maio" ? 5 :
-    mes == "Junho" ? 6 :
-    mes == "Julho" ? 7 :
-    mes == "Agosto" ? 8 :
-    mes == "Setembro" ? 9 :
-    mes == "Outubro" ? 10 :
-    mes == "Novembro"? 11 :
-    12;
+//Quantidade de dias de cada mês
+function getQtdDias(mes) {
+    if(mes == "Fevereiro") return 28;
+    else if(mes in ["Janeiro", "Março", "Maio", "Julho", "Agosto", "Outubro", "Dezembro"]) return 31;
+    else return 30
 }
 
 
 //Função de coloração da layer interativa
 function colorirMapa(indicador, total) {
-    let escala = (total*0.12)/10;
+    const escala = (total*0.12)/10;
     return indicador > escala*9 ? '#800026' :
     indicador > escala*8 ? '#bd0026' :
     indicador > escala*7 ? '#e31a1c' :
@@ -133,24 +126,11 @@ function estiloVisualizacao(feature) {
 }
 
 
-//Prepara os dados da layer de ocorrência
-function preparaMapa(natureza){
-    let data = dataBairros;
-    let len = 0;
-    for(feature of data.features){
-        feature.properties = dataSet[feature.bairro][natureza].properties;
-        feature.natureza = natureza;
-        len += feature.properties.length;
-    }
-    for(feature of data.features) feature.totalAjuPeriodo = len;
-    return data;
-}
-
-
 //Prepara o vetor dos pontos do heatmap
 function preparaCalor(natureza){
     let heatmap = [];
     for(feature of dataBairros.features){
+        console.log(natureza);
         dataSet[feature.bairro][natureza].properties.filter(function (ocr) {if(ocr.lat != -999.0) heatmap.push([ocr.lat, ocr.lng, 12])});
     }
     return heatmap;
@@ -165,9 +145,8 @@ function showCalor(nat){
 
 
 //Prepara a layer com os dados escolhidos e adiciona no mapa
-function showData(nat){
-    let dados = preparaMapa(nat);
-    let overlay_menuInterativo = L.geoJson(dados, {
+function showData(dados){
+    const overlay_menuInterativo = L.geoJson(dados, {
         style: estiloVisualizacao,
         onEachFeature: function onEachFeature(feature, layer) {
             layer.on({
@@ -175,7 +154,6 @@ function showData(nat){
                 click : showOcorrencias,
                 mouseout: function resetHighlight(e) {
                     overlay_menuInterativo.resetStyle(e.target);
-            
                 }
             });
         }
@@ -193,21 +171,68 @@ function resetLayers(){
 }
 
 
+//Exibe os dropboxes de ano e mês
+function showAnoMes(nat, ocorrencia, ano){
+    if (nat == "Vazio" && ocorrencia == "null") {
+        $(".drop-anos").fadeOut();
+        $(".drop-meses").fadeOut();
+    }
+    else {
+        if(nat != "Vazio" && ocorrencia == "violencia") $(".drop-anos").fadeIn();
+        if(ano != "null") $(".drop-meses").fadeIn();
+    }
+}
+
+
 //Exibe a layer desejada
 function exibirLayer() {
-    let ocorrencia = $("#list-ocorrencias").val();
-    let nat = $("#list-ocs-natureza option:selected").text();
+    const ocorrencia = $("#list-ocorrencias").val();
+    const nat = $("#list-ocs-natureza option:selected").text();
+    const ano = $("#list-anos").val();
+    const mes = $("#list-meses option:selected").text();
+    
+    showAnoMes(nat,ocorrencia, ano);
+    resetLayers();
+
     if(ocorrencia == "violencia" && nat != "Vazio"){
-        resetLayers();
-        showData(nat);
+        if(ano != "null" && mes == "Todo o período") showData(preparaMapaFiltrado(nat, ano, null));
+        else if(ano != "null" && mes != "Todo o período") showData(preparaMapaFiltrado(nat, ano, mes));
+        else showData(preparaMapaFiltrado(nat, null, null));
     }
-    else if(ocorrencia == "violenciaCalor" && nat != "Vazio"){
-        resetLayers();
-        showCalor(nat);
+    else if(ocorrencia == "violenciaCalor" && nat != "Vazio") showCalor(nat)
+    else resetLayers();
+}
+
+//filtra em relação ao ano ou ano & mês
+function filtroAnoMes(data, mode, y, m) {
+    if(mode) return data.filter(function(e){ return e.ano == y});
+    else return data.filter(e => e.ano == y && e.mes == m);
+}
+
+
+//Prepara os dados da layer de ocorrência
+function preparaMapaFiltrado(natureza, ano, mes){
+    let data = dataBairros;
+    let len = 0;
+    for(feature of data.features){
+        if(!ano && !mes) {
+            feature.periodo = (feature.natureza == "Homícidio Doloso" ? feature.periodo : (feature.natureza == "Latrocínio" ? feature.periodo : "Janeiro/2019 - Abril/2022"))
+            feature.properties = dataSet[feature.bairro][natureza].properties;
+        }
+        else if(ano && !mes) {
+            feature.periodo = `Janeiro/${ano} - ` + (ano == 2022 ? 'Abril/2022': `Dezembro/${ano}`);
+            feature.properties = filtroAnoMes(dataSet[feature.bairro][natureza].properties, true, ano, mes);
+        }
+        else {
+            feature.periodo = `1/${mes}/${ano} - ${getQtdDias(mes)}/${mes}/${ano}`;
+            feature.properties = filtroAnoMes(dataSet[feature.bairro][natureza].properties, false, ano, mes);
+        }
+
+        feature.natureza = natureza;
+        len += feature.properties.length;
     }
-    else{
-        resetLayers();
-    }
+    for(feature of data.features) feature.totalAjuPeriodo = len;
+    return data;
 }
 
 
@@ -216,12 +241,17 @@ $("#remove").click(function () {
     resetLayers();
     $("#list-ocorrencias").prop('selectedIndex', 0);
     $("#list-ocs-natureza").prop('selectedIndex', 0);
+    $("#list-anos").prop('selectedIndex', 0);
+    $("#list-meses").prop('selectedIndex', 0);
+    exibirLayer();
 });
 
 
 //Funções onChange das DropBoxes
 $("#list-ocs-natureza").on("change", exibirLayer);
 $("#list-ocorrencias").on("change", exibirLayer);
+$("#list-anos").on("change", exibirLayer);
+$("#list-meses").on("change", exibirLayer);
 
 
 
@@ -232,7 +262,7 @@ let menu_layers = L.control.layers.tree(mapViews, localizacoes, {
 });
 
 
-//Adicionando a marca d'água e o menu de layers ao mapa;
+//Adicionando o menu de layers ao mapa;
 menu_layers.addTo(map);
 
 
@@ -255,8 +285,11 @@ setInterval(checkOrientation,1000);
 
 //Fecha os as boxes;
 $("#info-box").on("click", () => {
-   $("#info-box").fadeOut();
+    $("#info-box").fadeOut();
    flagControl = !flagControl;
 });
 
 $("#addr-box").on("click", () => $("#addr-box").fadeOut());
+    
+
+exibirLayer();

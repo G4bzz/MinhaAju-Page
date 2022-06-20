@@ -27,10 +27,17 @@
 	<link rel="stylesheet" href="./assets/map_style.css">
     <link rel="stylesheet" href="./assets/leaflet.awesome-markers.css">
     <link rel="stylesheet" href="./assets/L.Control.Layers.Tree.css">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- <link rel="stylesheet" href="./backup/leaflet.css"/>
+    <link rel="stylesheet" href="./backup/all.min.css"/> -->
+
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- <script src="./backup/leaflet.js"></script> -->
+    
     <script src="./js/leaflet-heat.js"></script>
     <script src="./js/L.Control.Layers.Tree.js"></script>
     <script src="./js/leaflet.awesome-markers.min.js"></script>
@@ -39,6 +46,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous">
     </script>
+   <!--  <script src="./backup/jquery-3.6.0.min.js"></script> -->
 
     <script src="./Data/Dataset_ocorrencias.js"></script>
     <script src="./Data/Dataset_unificado.js"></script>
@@ -59,13 +67,13 @@
                     <div>
                         <label for="list-ocorrencias">Ocorrencias:</label>
                         <select id="list-ocorrencias" name="list-ocorrencias">
-                            <option value=null>Vazio</option>
+                            <option value="null">Vazio</option>
                             <option value="violencia">Violência: mapa interativo</option>
                             <option value="violenciaCalor">Violência: mapa de calor</option>
                         </select>
                     </div>
                     <div>
-                        <label for="list-ocorrencias">Natureza:</label>
+                        <label for="list-ocs-natureza">Natureza:</label>
                         <select id="list-ocs-natureza" name="list-ocs-natureza">
                             <option value="null">Vazio</option>
                             <option value="roubo">Roubo</option>
@@ -76,6 +84,36 @@
                             <option value="estVul">Estupro De Vulnerável</option>
                             <option value="impSex">Importunação Sexual</option>
                             <option value="assSex">Assédio Sexual</option>
+                        </select>
+                    </div>
+                    <div class="drop-anos">
+                        <label for="list-anos">Ano:</label>
+                        <select id="list-anos" name="list-anos">
+                            <option value="null">Todo o período</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+                    <div class="drop-meses">
+                        <label for="list-meses">Mês:</label>
+                        <select id="list-meses" name="list-meses">
+                            <option value="null">Todo o período</option>
+                            <option value="Janeiro">Janeiro</option>
+                            <option value="Fevereiro">Fevereiro</option>
+                            <option value="Março">Março</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Maio">Maio</option>
+                            <option value="Junho">Junho</option>
+                            <option value="Julho">Julho</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Setembro">Setembro</option>
+                            <option value="Outubro">Outubro</option>
+                            <option value="Novembro">Novembro</option>
+                            <option value="Dezembro">Dezembro</option>
                         </select>
                     </div>
                     <button id="remove">LIMPAR SELEÇÃO</button>
