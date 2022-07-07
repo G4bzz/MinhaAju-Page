@@ -16,6 +16,10 @@ function addrInfo(props){
     else{
         document.getElementById('addr-box').style = "display: block;"
         document.getElementById('addr-info').innerHTML = 'Nome: ' + '<span class="addr-destaque">'+ props.name + '</span>'+ (props.contact ? '<br>Dependência Administrativa: ' + '<span class="addr-destaque">'+ props.dep_admin + '</span>' + '<br>Modalidades: '+ '<span class="addr-destaque">'+ props.modalidades + '</span>' + '<br>Porte (matrículas): '+ '<span class="addr-destaque">'+ props.porte + '</span>' + '<br>Contato: '+ '<span class="addr-destaque">'+ props.contact + '</span>' + '<br><br>': '<br>') + 'Rua: ' + '<span class="addr-destaque">'+ props.address.road + '</span>' + '<br>' + 'Bairro: ' + '<span class="addr-destaque">'+ props.address.suburb + '</span>' + '<br>' + 'CEP: ' + '<span class="addr-destaque">'+ props.address.postcode + '</span>' + '<br>'+ '<span class="close-addr">Clique na box para fechá-la.</span>';
+        if(!flagControl) {
+            $('#control-panel').fadeOut();
+            flagControl = !flagControl;
+        }
     }
 }
 
@@ -269,6 +273,10 @@ menu_layers.addTo(map);
 //Resets das boxes ao selecionar outra layer;
 $(".leaflet-control-layers-selector").click(function() {
     menu_layers.collapse();
+    if(flagControl){
+        $("#control-panel").fadeIn();
+        flagControl = !flagControl;
+    }
     ($('#addr-box').css('visibility') == 'visible' ? $('#addr-box').css('visibility', 'hidden'): '');
     ($('#info-box').css('display') == 'block' ? $('#info-box').css('display', 'none'): '');
 })
@@ -289,7 +297,11 @@ $("#info-box").on("click", () => {
    flagControl = !flagControl;
 });
 
-$("#addr-box").on("click", () => $("#addr-box").fadeOut());
-    
+$("#addr-box").on("click", () => {
+    $("#addr-box").fadeOut();
+    $("#control-panel").fadeIn();
+    flagControl = !flagControl;
+});
+
 
 exibirLayer();

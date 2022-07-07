@@ -270,8 +270,7 @@ span.addr-destaque{
 
 @media screen and (max-height: 414px){
     #info-box{
-        height: 60vh;
-
+        height: 50vh;
         overflow-y: auto;
     }
 
@@ -288,6 +287,22 @@ span.addr-destaque{
         height: 70vh;
         overflow-y: auto;
         top: 10%;
+    }
 
+    #control-panel{
+        height: 29vh;
+        opacity: 95%;
+    }
+    
+    .control-panel-content{
+        padding: 0;
+    }
+
+    .control-panel-content button{
+        font-size: 1rem;
+    }
+
+    .control-panel-title h4{
+        padding: 0 0 0.2rem 0;
     }
 }
