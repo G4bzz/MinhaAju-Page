@@ -2,7 +2,8 @@
 - reorganização dos dados;
 - adição do painel de controle das layers;
 - expansão da categorização dos pontos de interesse;
-- adição dos heatmaps referentes às ocorrências.
+- adição dos heatmaps referentes às ocorrências;
+- ajustes gerais.
 
 <br>
 <br>

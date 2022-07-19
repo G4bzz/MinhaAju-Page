@@ -195,8 +195,8 @@ function exibirLayer() {
     const ano = $("#list-anos").val();
     const mes = $("#list-meses option:selected").text();
     
-    showAnoMes(nat,ocorrencia, ano);
     resetLayers();
+    showAnoMes(nat,ocorrencia, ano);
 
     if(ocorrencia == "violencia" && nat != "Vazio"){
         if(ano != "null" && mes == "Todo o período") showData(preparaMapaFiltrado(nat, ano, null));
@@ -220,7 +220,7 @@ function preparaMapaFiltrado(natureza, ano, mes){
     let len = 0;
     for(feature of data.features){
         if(!ano && !mes) {
-            feature.periodo = (feature.natureza == "Homícidio Doloso" ? feature.periodo : (feature.natureza == "Latrocínio" ? feature.periodo : "Janeiro/2019 - Abril/2022"))
+            feature.periodo = (natureza == "Homicídio Doloso" ? feature.periodo : (natureza == "Latrocínio" ? natureza : "Janeiro/2019 - Abril/2022"))
             feature.properties = dataSet[feature.bairro][natureza].properties;
         }
         else if(ano && !mes) {
@@ -239,21 +239,30 @@ function preparaMapaFiltrado(natureza, ano, mes){
     return data;
 }
 
-
-//Botão limpa mapa
-$("#remove").click(function () {
+function resetMenuLayers() {
     resetLayers();
     $("#list-ocorrencias").prop('selectedIndex', 0);
     $("#list-ocs-natureza").prop('selectedIndex', 0);
     $("#list-anos").prop('selectedIndex', 0);
     $("#list-meses").prop('selectedIndex', 0);
     exibirLayer();
-});
+}
+
+
+//Botão limpa mapa
+$("#remove").click(resetMenuLayers());
 
 
 //Funções onChange das DropBoxes
+$("#list-ocorrencias").on("change", function () {
+    if($("#list-ocs-natureza option:selected").text() != 'Vazio') {
+        const back = $("#list-ocorrencias").prop('selectedIndex');
+        resetMenuLayers();
+        $("#list-ocorrencias").prop('selectedIndex',back);
+    };
+    exibirLayer();
+});
 $("#list-ocs-natureza").on("change", exibirLayer);
-$("#list-ocorrencias").on("change", exibirLayer);
 $("#list-anos").on("change", exibirLayer);
 $("#list-meses").on("change", exibirLayer);
 
