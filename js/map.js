@@ -262,7 +262,16 @@ $("#list-ocorrencias").on("change", function () {
     };
     exibirLayer();
 });
-$("#list-ocs-natureza").on("change", exibirLayer);
+$("#list-ocs-natureza").on("change", function(){
+    if($("#list-anos").val() != 'null') {
+        const backOc = $("#list-ocorrencias").prop('selectedIndex');
+        const backNat = $("#list-ocs-natureza").prop('selectedIndex');
+        resetMenuLayers();
+        $("#list-ocorrencias").prop('selectedIndex',backOc);
+        $("#list-ocs-natureza").prop('selectedIndex',backNat);
+    };
+    exibirLayer();
+});
 $("#list-anos").on("change", exibirLayer);
 $("#list-meses").on("change", exibirLayer);
 
