@@ -250,7 +250,7 @@ function resetMenuLayers() {
 
 
 //Botão limpa mapa
-$("#remove").click(resetMenuLayers());
+$("#remove").click(() => resetMenuLayers());
 
 
 //Funções onChange das DropBoxes
