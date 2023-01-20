@@ -196,25 +196,35 @@ i.h2u-arrow{
     color: #FFD132;
     text-shadow: -0.8rem 0 0 #2b2b2b;
     margin: 0 3rem;
-    padding-bottom: 8rem;
+    padding: 5rem 0 5rem 0;
+}
+
+.open-box-tip{
+	display: flex;
+	flex-flow: row nowrap;
+	position: relative;
+	top: 10%;
+	justify-content: space-evenly;
+	align-items:flex-start;
 }
 
 .open-box{
     display: flex;
     flex-flow: row nowrap;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
+    transform: translateY(-60%);
     justify-content: space-evenly;
-    align-items: center;
+    align-items:flex-start;
 }
 
 .open-box img{
-    width: 30%;
+    width: 60%;
     padding: 0 5rem;
 }
 
-.open-box h2 {
+.open-box h2, 
+.open-box-tip h2 {
     max-width: 40rem;
     padding: 0 5rem;
     font-size: 2vw;
@@ -229,11 +239,32 @@ i.h2u-arrow{
     display: flex;
     flex-flow: column;
     align-items: center;
+		text-align: center;
+		justify-content: center;
+		background-color: #3a3a3a00;
+		border-radius: 20px;
+		margin: 0 5vw;
+		min-height: 40vh;
+		cursor: pointer;
+		transition: 300ms all ease-in-out;
+	}
+
+.oa-text:hover{
+	background-color: #3a3a3a25;
+	transition: 300ms all ease-in-out;
+}
+
+.oa-tip{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+		text-align: center;
+		margin: 0 5vw;
 }
 
 .oa-text h2{
     padding-bottom: 3rem;
-}
+	}
 
 .app-button{
     border-radius: 0.8rem;
@@ -457,6 +488,7 @@ footer.bg-site{
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
+				top: 50%;
     }
     .open-box img{
         width: 70%;
@@ -467,6 +499,27 @@ footer.bg-site{
         padding: 0 5rem;
         font-size: 4vw;
     }
+
+		.open-box-tip{
+			top: 2%;
+		}
+		.open-box-tip h2 {
+			font-size: 4vw;
+			width: 100%;
+		}
+
+		.oa-text{
+			margin: 1vh 4vw;
+		}
+
+		.open-box-tip{
+			display: flex;
+			flex-flow: row nowrap;
+			margin: 0 100px;
+			justify-content: space-evenly;
+			align-items:flex-start;
+		}
+		
 
     .app-button{
         font-size: 6vw;
